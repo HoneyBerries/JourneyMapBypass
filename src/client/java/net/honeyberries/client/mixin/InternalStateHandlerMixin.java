@@ -25,9 +25,6 @@ public class InternalStateHandlerMixin {
 			)
 	)
 	private Boolean journeymapbypass$forceEnabled(BooleanField instance) {
-		if (Minecraft.getInstance().hasSingleplayerServer()) {
-			return Boolean.TRUE;
-		}
-		return instance.get();
+		return Boolean.TRUE;
 	}
 }
