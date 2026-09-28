@@ -3,7 +3,8 @@
 	"package": "net.honeyberries.client.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"client": [
-		"ExampleClientMixin"
+		"ExampleClientMixin",
+		"InternalStateHandlerMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

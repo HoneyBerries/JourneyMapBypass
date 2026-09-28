@@ -9,6 +9,16 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
+	exclusiveContent {
+		forRepository {
+			maven("https://api.modrinth.com/maven") {
+				name = "Modrinth"
+			}
+		}
+		filter {
+			includeGroup("maven.modrinth")
+		}
+	}
 }
 
 loom {
@@ -29,6 +39,33 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	implementation("net.fabricmc.fabric-api:fabric-api:${providers.gradleProperty("fabric_api_version").get()}")
+
+	// JourneyMap: compile-only, never bundled or redistributed. This mod only mixes into
+	// JourneyMap's classes at runtime on the end user's own installation, which must already
+	// have JourneyMap installed separately (see fabric.mod.json depends). This project has no
+	// remapping step configured (no "mod*" configurations exist), so JourneyMap's already
+	// Mojang-mapped jar is referenced with a plain compile-only dependency, scoped to the
+	// "client" source set since InternalStateHandler is client-only.
+	"clientCompileOnly"("maven.modrinth:journeymap:${providers.gradleProperty("journeymap_version").get()}")
+
+	// JourneyMap's config-field classes (BooleanField, etc.) reach into its API module for
+	// the Config<T> interface. That module isn't published as its own Modrinth artifact -
+	// it's only bundled jar-in-jar inside the main jar - so it's extracted here at build time
+	// (never committed to the repo) purely to compile against.
+	"clientCompileOnly"(files(provider {
+		val journeymapJar = configurations.detachedConfiguration(
+			dependencies.create("maven.modrinth:journeymap:${providers.gradleProperty("journeymap_version").get()}")
+		).resolve().single()
+
+		val extractDir = layout.buildDirectory.dir("journeymapApiJar").get().asFile
+		extractDir.mkdirs()
+		val outFile = extractDir.resolve("journeymap-api.jar")
+
+		zipTree(journeymapJar).matching { include("META-INF/jars/journeymap-api-*.jar") }.singleFile
+			.copyTo(outFile, overwrite = true)
+
+		outFile
+	}))
 }
 
 tasks.processResources {
