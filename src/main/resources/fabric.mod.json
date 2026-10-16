@@ -23,7 +23,6 @@
 		]
 	},
 	"mixins": [
-		"journeymapbypass.mixins.json",
 		{
 			"config": "journeymapbypass.client.mixins.json",
 			"environment": "client"
