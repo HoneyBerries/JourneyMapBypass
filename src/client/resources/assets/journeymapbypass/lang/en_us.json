@@ -1,0 +1,9 @@
+{
+	"journeymapbypass.info_slot.movement_speed_3d": "Movement Speed (3D)",
+	"journeymapbypass.info_slot.movement_speed_3d.game": "Speed (3D): %s blocks/sec",
+	"journeymapbypass.info_slot.movement_speed_3d.tooltip": "Displays 3D Movement speed in meters per second.",
+
+	"jm.common.info_slot.movement_speed": "Movement Speed (2D)",
+	"jm.common.info_slot.movement_speed.game": "Speed (2D): %1$s blocks/sec",
+	"jm.common.info_slot.movement_speed.tooltip": "Displays 2D (horizontal only) Movement Speed as Blocks per Second."
+}

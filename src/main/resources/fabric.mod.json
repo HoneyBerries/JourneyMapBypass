@@ -20,6 +20,9 @@
 		],
 		"client": [
 			"net.honeyberries.client.JourneyMapBypassClient"
+		],
+		"journeymap": [
+			"net.honeyberries.client.JourneyMapBypassPlugin"
 		]
 	},
 	"mixins": [
