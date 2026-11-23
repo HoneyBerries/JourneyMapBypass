@@ -14,4 +14,4 @@ pluginManagement {
 }
 
 // Should match your modid
-rootProject.name = "journeymapbypass"
+rootProject.name = "journeymapenhancements"

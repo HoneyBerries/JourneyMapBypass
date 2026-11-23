@@ -25,7 +25,7 @@ loom {
 	splitEnvironmentSourceSets()
 
 	mods {
-		register("journeymapbypass") {
+		register("journeymapenhancements") {
 			sourceSet(sourceSets.main.get())
 			sourceSet(sourceSets.getByName("client"))
 		}

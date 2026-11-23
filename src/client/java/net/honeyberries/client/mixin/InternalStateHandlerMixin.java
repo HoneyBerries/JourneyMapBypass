@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 public class InternalStateHandlerMixin {
 
 	@ModifyVariable(method = "setStates", at = @At("STORE"), name = "prop")
-	private GlobalProperties journeymapbypass$liftRestrictions(GlobalProperties prop) {
+	private GlobalProperties journeymapenhancements$liftRestrictions(GlobalProperties prop) {
 		prop.journeymapEnabled.set(true);
 		prop.minimapEnabled.set(true);
 		prop.hideCoordinates.set(false);

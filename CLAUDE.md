@@ -14,10 +14,10 @@ A client-side Fabric mod (Minecraft 26.3, Java 25) that mixes into JourneyMap to
 
 ## Architecture
 
-- Split source sets (`loom.splitEnvironmentSourceSets()`): `src/main` (common entrypoint, essentially empty) and `src/client` (all real logic). Both are registered as one mod, `journeymapbypass`.
+- Split source sets (`loom.splitEnvironmentSourceSets()`): `src/main` (common entrypoint, essentially empty) and `src/client` (all real logic). Both are registered as one mod, `journeymapenhancements`.
 - The entire behaviour lives in `src/client/java/net/honeyberries/client/mixin/InternalStateHandlerMixin.java`. It uses `@ModifyVariable` on the `prop` local (`GlobalProperties`) stored in `InternalStateHandler.setStates` and overwrites its fields in place before JourneyMap fans them out to its state setters and `FeatureManager`. Restrictions the server enforces itself (teleport, server-filtered radar, global-waypoints-only) are deliberately left alone.
-- Mixin config `src/client/resources/journeymapbypass.client.mixins.json` has `defaultRequire: 1`, so a mixin that fails to match (e.g. after a JourneyMap refactor) crashes at startup rather than silently doing nothing. New mixins must be registered there.
-- `JourneyMapBypassClient` is an empty client entrypoint.
+- Mixin config `src/client/resources/journeymapenhancements.client.mixins.json` has `defaultRequire: 1`, so a mixin that fails to match (e.g. after a JourneyMap refactor) crashes at startup rather than silently doing nothing. New mixins must be registered there.
+- `JourneyMapEnhancementsClient` is an empty client entrypoint.
 
 ## JourneyMap dependency (non-obvious)
 

@@ -10,17 +10,17 @@ import net.minecraft.network.chat.Component;
 
 /** JourneyMap API entrypoint ("journeymap" in fabric.mod.json). */
 @JourneyMapPlugin(apiVersion = "2.0.0")
-public class JourneyMapBypassPlugin implements IClientPlugin {
-	public static final String MOD_ID = "journeymapbypass";
+public class JourneyMapEnhancementsPlugin implements IClientPlugin {
+	public static final String MOD_ID = "journeymapenhancements";
 	/** Lang key; also the id JourneyMap stores in the info-slot setting. Tooltip is this + ".tooltip". */
-	public static final String SPEED_3D_KEY = "journeymapbypass.info_slot.movement_speed_3d";
+	public static final String SPEED_3D_KEY = "journeymapenhancements.info_slot.movement_speed_3d";
 
 	@Override
 	public void initialize(IClientAPI api) {
 		// The first register() arg is the slot's owner id. JourneyMap prefixes tooltips of slots that have
-		// one ("journeymapbypass:Displays..."); the empty id is what JourneyMap's built-in slots use.
+		// one ("journeymapenhancements:Displays..."); the empty id is what JourneyMap's built-in slots use.
 		ClientEventRegistry.INFO_SLOT_REGISTRY_EVENT.subscribe(MOD_ID, event ->
-				event.register("", Component.translatable(SPEED_3D_KEY), 10L, JourneyMapBypassPlugin::speed3d));
+				event.register("", Component.translatable(SPEED_3D_KEY), 10L, JourneyMapEnhancementsPlugin::speed3d));
 	}
 
 	@Override

@@ -24,7 +24,7 @@ public class DrawEntityStepMixin {
 		),
 		index = 6
 	)
-	private double journeymapbypass$useMinimapFontScale(double hardcodedFontScale) {
+	private double journeymapenhancements$useMinimapFontScale(double hardcodedFontScale) {
 		return JourneymapClient.getInstance().getActiveMiniMapProperties().getFontScale();
 	}
 }
