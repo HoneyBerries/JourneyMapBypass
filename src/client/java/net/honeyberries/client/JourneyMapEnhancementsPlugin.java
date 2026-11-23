@@ -23,12 +23,20 @@ public class JourneyMapEnhancementsPlugin implements IClientPlugin {
 				event.register("", Component.translatable(SPEED_3D_KEY), 10L, JourneyMapEnhancementsPlugin::speed3d));
 	}
 
+
 	@Override
 	public String getModId() {
 		return MOD_ID;
 	}
 
-	/** Like JourneyMap's movement speed (blocks/sec from per-tick position delta) but includes the Y axis. */
+
+	/**
+	 * Computes the local player's three-dimensional movement speed from the change in position since the previous tick,
+	 * including horizontal and vertical movement, and formats it for display in the JourneyMap info slot.
+	 *
+	 * @return a translatable component containing the player's speed in blocks per second, or an empty component if no
+	 * local player is available
+	 */
 	private static Component speed3d() {
 		LocalPlayer player = Minecraft.getInstance().player;
 		if (player == null) {
